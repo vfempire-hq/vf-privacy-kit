@@ -1,0 +1,80 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  rust:
+    name: Rust ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-14, windows-2022]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - uses: Swatinem/rust-cache@v2
+      - name: fmt
+        run: cargo fmt --all -- --check
+      - name: clippy
+        run: cargo clippy --all-targets --all-features -- -D warnings
+      - name: test
+        run: cargo test --all-features --workspace
+
+  typescript:
+    name: TypeScript
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: pnpm/action-setup@v4
+        with: { version: 9 }
+      - run: pnpm --dir packages/vf-privacy-kit install
+      - run: pnpm --dir packages/vf-privacy-kit typecheck
+      - run: pnpm --dir packages/vf-privacy-kit test
+
+  wasm-build:
+    name: WASM bundle
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with: { targets: wasm32-unknown-unknown }
+      - name: install wasm-pack
+        run: cargo install wasm-pack --locked
+      - name: build WASM
+        run: |
+          wasm-pack build crates/vf-privacy-kit \
+            --target web \
+            --out-dir ../../packages/vf-privacy-kit/wasm \
+            --release
+
+  audit:
+    name: cargo-audit + supply-chain
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: install cargo-audit + cargo-deny
+        run: cargo install cargo-audit cargo-deny --locked
+      - run: cargo audit --deny warnings
+      - run: cargo deny check
+
+  security-scan:
+    name: secret + credential scan
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - name: gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

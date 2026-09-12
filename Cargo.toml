@@ -1,0 +1,52 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/vf-privacy-kit",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.80"
+# Dual-licensed. AGPL-3.0-or-later for open use; commercial licence for
+# closed-source / SaaS use — see COMMERCIAL-LICENSE.md.
+license = "AGPL-3.0-or-later OR LicenseRef-VF-Commercial"
+authors = ["VF Empire Corp Ltd <hello@vfempire.com>"]
+repository = "https://github.com/vfempire-hq/vf-privacy-kit"
+homepage = "https://vfempire.com"
+readme = "README.md"
+
+[workspace.dependencies]
+# Cryptographic primitives — pinned to audited versions.
+x25519-dalek       = { version = "2.0",  default-features = false, features = ["static_secrets"] }
+ed25519-dalek      = { version = "2.1",  default-features = false, features = ["rand_core"] }
+age                = { version = "0.10", features = ["armor"] }
+argon2             = { version = "0.5" }
+chacha20poly1305   = { version = "0.10" }
+sha2               = { version = "0.10" }
+hex                = { version = "0.4" }
+blake3             = { version = "1.5",  default-features = false }
+zeroize            = { version = "1.8",  features = ["zeroize_derive"] }
+rand               = { version = "0.8" }
+subtle             = { version = "2.6" }
+base64             = { version = "0.22" }
+# Serialisation for the wire formats + pack manifests.
+serde              = { version = "1.0", features = ["derive"] }
+serde_json         = "1.0"
+# Error types + async runtime + HTTP client for channel client.
+anyhow             = { version = "1" }
+thiserror          = { version = "1" }
+tokio              = { version = "1", features = ["rt-multi-thread", "macros"] }
+reqwest            = { version = "0.12", default-features = false, features = ["rustls-tls", "json"] }
+# uniffi for the Swift + Android bindings (Wave 3).
+uniffi             = { version = "0.28", features = ["cli"] }
+
+[profile.release]
+lto = "fat"
+codegen-units = 1
+opt-level = 3
+panic = "abort"
+strip = "symbols"
+
+[profile.release.package."*"]
+opt-level = 3

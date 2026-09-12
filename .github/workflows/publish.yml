@@ -1,0 +1,56 @@
+name: Publish
+
+on:
+  push:
+    tags: ['v*.*.*']
+
+jobs:
+  crates-io:
+    name: Publish crates.io
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: publish
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}
+        run: cargo publish -p vf-privacy-kit
+
+  npm:
+    name: Publish npm
+    runs-on: ubuntu-24.04
+    needs: crates-io
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+      - uses: pnpm/action-setup@v4
+        with: { version: 9 }
+      - name: build
+        run: pnpm --dir packages/vf-privacy-kit install && pnpm --dir packages/vf-privacy-kit build
+      - name: publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: pnpm --dir packages/vf-privacy-kit publish --access public --no-git-checks
+
+  swift:
+    name: Publish Swift Package
+    runs-on: macos-14
+    needs: crates-io
+    steps:
+      - uses: actions/checkout@v4
+      # Placeholder — the real job runs uniffi-bindgen swift + builds an
+      # XCFramework + pushes to github.com/vfempire-hq/vf-privacy-kit-swift.
+      - run: echo "Swift binding publish: TODO — see docs/build-bindings.md"
+
+  android:
+    name: Publish Android AAR
+    runs-on: ubuntu-24.04
+    needs: crates-io
+    steps:
+      - uses: actions/checkout@v4
+      # Placeholder — uniffi-bindgen kotlin + AAR build + push to
+      # Maven Central or GitHub Packages under com.vfempire:vf-privacy-kit.
+      - run: echo "Android AAR publish: TODO — see docs/build-bindings.md"

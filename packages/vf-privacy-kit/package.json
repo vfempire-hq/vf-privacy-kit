@@ -1,0 +1,54 @@
+{
+  "name": "@vf/privacy-kit",
+  "version": "0.1.0",
+  "description": "Sealed identity, sealed transport, sealed offline data packs — shared crypto + networking layer for every VF Empire product. WASM-backed reference implementation from the vf-privacy-kit Rust crate.",
+  "license": "(AGPL-3.0-or-later OR LicenseRef-VF-Commercial)",
+  "author": "VF Empire Corp Ltd <hello@vfempire.com>",
+  "homepage": "https://vfempire.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vfempire-hq/vf-privacy-kit",
+    "directory": "packages/vf-privacy-kit"
+  },
+  "bugs": {
+    "url": "https://github.com/vfempire-hq/vf-privacy-kit/issues"
+  },
+  "keywords": ["crypto", "privacy", "age", "ed25519", "sealed", "vf"],
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./identity": "./dist/identity.js",
+    "./channel":  "./dist/channel.js",
+    "./pack":     "./dist/pack.js",
+    "./token":    "./dist/token.js",
+    "./wipe":     "./dist/wipe.js"
+  },
+  "files": [
+    "dist/",
+    "wasm/",
+    "LICENSE",
+    "NOTICE",
+    "README.md"
+  ],
+  "scripts": {
+    "build":     "npm run build:wasm && tsc",
+    "build:wasm":"wasm-pack build ../../crates/vf-privacy-kit --target web --out-dir ../../packages/vf-privacy-kit/wasm --release",
+    "test":      "vitest run",
+    "test:cross":"cd ../../tests/cross-lang && ./run.sh",
+    "lint":      "eslint src/",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "5.6.3",
+    "vitest":     "2.1.2",
+    "eslint":     "9.13.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

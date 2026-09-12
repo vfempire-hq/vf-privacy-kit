@@ -1,0 +1,19 @@
+vf-privacy-kit
+Copyright 2026 VF Empire Corp Ltd (Malta C 94160)
+
+This product includes software developed at VF Empire Corp Ltd
+(https://vfempire.com/).
+
+Ships as:
+- Rust crate `vf-privacy-kit` (crates.io)
+- npm package `@vf/privacy-kit`
+- Swift Package (github.com/vfempire-hq/vf-privacy-kit-swift, planned)
+- Android AAR (github.com/vfempire-hq/vf-privacy-kit-android, planned)
+
+Cryptographic primitives used:
+- X25519 (RFC 7748) — key agreement for sealed identity + transport
+- Ed25519 (RFC 8032) — signing for identity + offline data-pack integrity
+- age (age-encryption.org) — sealed envelope format
+- BLAKE3 — hashing / MAC
+
+Dependencies retain their own licences; see each language's manifest.
