@@ -83,8 +83,9 @@ impl Vault {
         };
         fs::write(root.join("vault.json"), serde_json::to_vec_pretty(&manifest)?)?;
 
-        // touch the SQLite metadata db so schema is present
-        crate::meta::init_db(&root)?;
+        // Application-specific tables (e.g. VF Mail's SQLite meta DB) are the
+        // consumer's responsibility — the kit only handles the encrypted
+        // vault manifest, not any downstream app tables.
 
         let v = Vault {
             root,

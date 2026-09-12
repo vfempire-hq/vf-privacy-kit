@@ -2,7 +2,7 @@
   "name": "@vf/privacy-kit",
   "version": "0.1.0",
   "description": "Sealed identity, sealed transport, sealed offline data packs — shared crypto + networking layer for every VF Empire product. WASM-backed reference implementation from the vf-privacy-kit Rust crate.",
-  "license": "(AGPL-3.0-or-later OR LicenseRef-VF-Commercial)",
+  "license": "Apache-2.0",
   "author": "VF Empire Corp Ltd <hello@vfempire.com>",
   "homepage": "https://vfempire.com",
   "repository": {

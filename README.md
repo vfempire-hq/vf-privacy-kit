@@ -8,7 +8,7 @@ Sealed identity, sealed transport, sealed offline data packs — the shared
 crypto and networking layer that makes every VF Empire product safe by
 default. No product rolls its own crypto.
 
-[![License: AGPL-3.0 or Commercial](https://img.shields.io/badge/license-AGPL--3.0_OR_Commercial-purple.svg)](LICENSE)
+[![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![Status](https://img.shields.io/badge/status-lifting_from_vfmail--desktop-yellow.svg)](https://github.com/vfempire-hq/vfmail-desktop/tree/main/src-tauri/src)
 
 </div>

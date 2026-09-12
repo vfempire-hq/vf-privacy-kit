@@ -8,9 +8,11 @@ members = [
 version = "0.1.0"
 edition = "2021"
 rust-version = "1.80"
-# Dual-licensed. AGPL-3.0-or-later for open use; commercial licence for
-# closed-source / SaaS use — see COMMERCIAL-LICENSE.md.
-license = "AGPL-3.0-or-later OR LicenseRef-VF-Commercial"
+# Apache-2.0. Vincent's licence call 2026-09-12 — see the coord file at
+# ~/silock-apps/_shared/claude-memory/coord_vf_github_2026_09_12.md.
+# Every downstream product (VF Mail AGPL, FUEL·IT proprietary, third
+# parties) can consume this kit under Apache-2.0.
+license = "Apache-2.0"
 authors = ["VF Empire Corp Ltd <hello@vfempire.com>"]
 repository = "https://github.com/vfempire-hq/vf-privacy-kit"
 homepage = "https://vfempire.com"
