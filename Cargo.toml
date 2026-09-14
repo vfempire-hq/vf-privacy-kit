@@ -8,12 +8,13 @@ members = [
 version = "0.1.0"
 edition = "2021"
 rust-version = "1.80"
-# Dual-licensed. Vincent's licence call 2026-09-12 in-session:
-# "yes fix it to duel license, i dont want anyone to be able to build this."
-# AGPL-3.0-or-later for open-source use; commercial licence for closed
-# distribution — see COMMERCIAL-LICENSE.md. VF Empire in-house products
-# (VF Mail, FUEL·IT) exercise the commercial grant by fiat.
-license = "AGPL-3.0-or-later"
+# Functional Source License (FSL-1.1-ALv2). Replaces the earlier AGPL-3.0 +
+# commercial dual-licence posture on 2026-09-14 per Vincent's directive.
+# FSL grants free non-Competing use + auto-converts each release to Apache 2.0
+# after two years. Protects the product from commercial cloning + still gives
+# the public full source access. Full text in LICENSE at repo root; spec at
+# https://fsl.software.
+license = "LicenseRef-FSL-1.1-ALv2"
 authors = ["VF Empire Corp Ltd <hello@vfempire.com>"]
 repository = "https://github.com/vfempire-hq/vf-privacy-kit"
 homepage = "https://vfempire.com"

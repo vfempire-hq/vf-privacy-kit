@@ -8,7 +8,7 @@ Sealed identity, sealed transport, sealed offline data packs — the shared
 crypto and networking layer that makes every VF Empire product safe by
 default. No product rolls its own crypto.
 
-[![License: AGPL-3.0 OR Commercial](https://img.shields.io/badge/license-AGPL--3.0_OR_Commercial-purple.svg)](LICENSE)
+[![License: FSL-1.1-ALv2](https://img.shields.io/badge/license-FSL--1.1--ALv2-blue.svg)](LICENSE)
 [![Status](https://img.shields.io/badge/status-lifting_from_vfmail--desktop-yellow.svg)](https://github.com/vfempire-hq/vfmail-desktop/tree/main/src-tauri/src)
 [![security-scan](https://github.com/vfempire-hq/vf-privacy-kit/actions/workflows/security-scan.yml/badge.svg)](https://github.com/vfempire-hq/vf-privacy-kit/actions/workflows/security-scan.yml)
 
@@ -94,15 +94,15 @@ shape. Reference implementation = Rust. Others via bindings.
 
 ## Licence
 
-**Dual licensed. Pick one:**
+Licensed under the **[Functional Source License 1.1 (ALv2)](LICENSE)** — replaces the earlier AGPL-3.0 + commercial dual-licence posture as of 2026-09-14.
 
-- **[AGPL-3.0-or-later](LICENSE)** — free for open-source use. If you host
-  a modified derivative as a service, you must share your modifications
-  with your users. This is the same clause that makes the VF Mail privacy
-  claim enforceable.
-- **[Commercial](COMMERCIAL-LICENSE.md)** — proprietary use without the
-  copyleft. Contact `licensing@vfempire.com` for pricing. VF Empire
-  in-house products (FUEL·IT, etc.) hold this grant by default.
+FSL is source-available: **free** for any use that isn't a Competing Use (internal use, non-commercial education, non-commercial research, professional services provided to FSL-licensed users). It **restricts** redistribution as a commercial product that offers substantially similar functionality to `vf-privacy-kit`. And it **auto-converts each release to Apache 2.0 after two years** — every version becomes fully open source on its second birthday, guaranteed by the licence itself.
+
+**Why FSL for a shared crypto substrate:** the whole point of `vf-privacy-kit` is that every VF Empire product inherits the same sealed-identity + sealed-transport + offline-data-pack primitives. FSL protects the substrate from being lifted verbatim into a competing product suite, while still letting security auditors, contributors, and downstream open-source projects use it freely. Every VF product carries this crate under the same FSL grant.
+
+VF Empire in-house products (VF Mail, FileIT, Guardian Shield, VF Wallet, VF Legacy, VF Home, SnapIT) exercise the "Permitted Purpose" grant by default — they are not Competing Uses because they are all *from* VF Empire.
+
+For questions about specific use cases — commercial integration, embedding in your own product, custom SLAs — write to `licensing@vfempire.com`. Full FSL text in [LICENSE](LICENSE); spec at https://fsl.software.
 
 ---
 
