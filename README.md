@@ -10,6 +10,7 @@ default. No product rolls its own crypto.
 
 [![License: AGPL-3.0 OR Commercial](https://img.shields.io/badge/license-AGPL--3.0_OR_Commercial-purple.svg)](LICENSE)
 [![Status](https://img.shields.io/badge/status-lifting_from_vfmail--desktop-yellow.svg)](https://github.com/vfempire-hq/vfmail-desktop/tree/main/src-tauri/src)
+[![security-scan](https://github.com/vfempire-hq/vf-privacy-kit/actions/workflows/security-scan.yml/badge.svg)](https://github.com/vfempire-hq/vf-privacy-kit/actions/workflows/security-scan.yml)
 
 </div>
 
